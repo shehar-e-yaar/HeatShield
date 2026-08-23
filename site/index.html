@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HeatShield</title>
+  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="data.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <div class="ambient-cyan"></div>
+  
+  <div class="app-container">
+    <header class="glass-nav">
+      <div class="nav-brand">
+        <i data-lucide="flame" class="nav-flame"></i>
+        <span class="nav-title">HeatShield</span>
+        <span class="nav-divider"></span>
+        <i data-lucide="map-pin" class="nav-pin"></i>
+        <span class="nav-city">Los Angeles, CA</span>
+      </div>
+    </header>
+
+    <!-- Slim Control Strip -->
+    <div class="control-strip">
+      <span id="current-date" class="control-date"></span>
+      <div class="control-actions">
+        <button id="day-night-toggle" class="ctrl-btn"><i data-lucide="sun" style="width:13px;"></i> Current Weather</button>
+        <button id="reset-weights" class="ctrl-btn">Reset Config</button>
+      </div>
+    </div>
+
+    <!-- Algorithm Weights -->
+    <div class="glass-card weight-sliders-container">
+      <div class="slider-group">
+        <label>Heat Exposure <span id="weight-heat-val">50%</span></label>
+        <input type="range" id="weight-heat" min="0" max="100" value="50">
+      </div>
+      <div class="slider-group">
+        <label>Vulnerable Pop <span id="weight-pop-val">25%</span></label>
+        <input type="range" id="weight-pop" min="0" max="100" value="25">
+      </div>
+      <div class="slider-group">
+        <label>Low Trees <span id="weight-tree-val">15%</span></label>
+        <input type="range" id="weight-tree" min="0" max="100" value="15">
+      </div>
+      <div class="slider-group">
+        <label>Impervious <span id="weight-pave-val">10%</span></label>
+        <input type="range" id="weight-pave" min="0" max="100" value="10">
+      </div>
+    </div>
+
+    <div class="hero-area" id="hero-area" data-section="overview">
+      <!-- Injected by JS -->
+    </div>
+
+    <div class="dashboard-top" id="section-heat-risk">
+      <div class="map-container"><div id="map"></div></div>
+      <aside class="sidebar">
+        <div class="glass-card" id="detail-card"></div>
+        <div class="glass-card" style="padding:1rem;">
+          <h3 class="section-title" style="margin-bottom: 1rem;"><i data-lucide="list-ordered"></i> Priority Ranking</h3>
+          <div id="ranking-list" style="max-height: 250px; overflow-y:auto;"></div>
+        </div>
+      </aside>
+    </div>
+
+    <div class="dashboard-bottom" id="section-priority-areas">
+      <div class="glass-card" id="surface-section">
+        <!-- Injected by JS -->
+      </div>
+      
+      <div class="glass-card">
+        <h3 class="section-title"><i data-lucide="circle-dollar-sign"></i> Cooling Investment</h3>
+        <div style="margin-bottom:1.5rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+            <span style="font-size:0.75rem; color:var(--text-secondary); text-transform:uppercase;">Total Allocation</span>
+            <span id="budget-display" class="budget-amount" style="margin:0;">$500,000</span>
+          </div>
+          <input type="range" id="budget-slider" min="0" max="1000000" step="50000" value="500000" style="width:100%">
+        </div>
+        <div class="budget-list" id="budget-list"></div>
+      </div>
+      
+      <div class="glass-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.25rem;">
+          <h3 class="section-title" style="margin-bottom:0;"><i data-lucide="trees"></i> Scenario Lab</h3>
+          <span style="font-size:0.6rem; letter-spacing:0.08em; text-transform:uppercase; background:rgba(77,163,255,0.12); color:var(--primary); padding:0.2rem 0.5rem; border-radius:6px; border:1px solid rgba(77,163,255,0.25);">Simulated Estimate</span>
+        </div>
+        <div style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:1.25rem; line-height:1.4;">Estimated cooling response based on canopy and pavement characteristics.</div>
+        
+        <div class="whatif-controls">
+          <div style="font-size:0.65rem; font-weight:500; margin-bottom:0.5rem; color:var(--text-secondary); text-transform:uppercase;">Target Neighborhood</div>
+          <select id="whatif-area"></select>
+          <div style="display:flex; justify-content:space-between; font-size:0.65rem; font-weight:500; margin-bottom:0.5rem; color:var(--text-secondary); text-transform:uppercase;">
+            <span>Simulate Canopy Expansion</span>
+            <span id="whatif-tree-val" style="color:var(--primary);">+10 pp</span>
+          </div>
+          <input type="range" id="whatif-tree-slider" min="0" max="50" value="10">
+        </div>
+        <div id="whatif-result"></div>
+        <div style="font-size:0.68rem; color:var(--text-muted); margin-top:0.75rem; line-height:1.4;">*Estimated cooling is a bounded simulation based on canopy and urban-surface characteristics; it is not a CFD or site-specific temperature prediction.</div>
+      </div>
+      
+      <div style="display:flex; flex-direction:column; gap:1.5rem;">
+        <div class="glass-card">
+          <h3 class="section-title"><i data-lucide="lightbulb"></i> Key Insight</h3>
+          <div id="discovery-text" style="font-size:1.1rem; font-weight:300; color:var(--text-primary); line-height:1.6; margin-bottom:1.5rem;"></div>
+        </div>
+        
+        <div class="glass-card">
+          <h3 class="section-title"><i data-lucide="trending-up"></i> Impact Summary</h3>
+          <div class="impact-grid">
+            <div><div id="comm-lives" class="val">780K</div><div class="lbl">Residents in High/Critical Zones</div></div>
+            <div><div id="comm-savings" class="val" style="color:var(--success);">$3.2M</div><div class="lbl" title="Illustrative model value — not a financial forecast">Illustrative Impact Value</div></div>
+            <div><div id="comm-coverage" class="val" style="color:var(--secondary);">86%</div><div class="lbl">Impervious surface</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+        let currentWeights = { ...DEFAULT_WEIGHTS };
+    let map = null;
+    let polygons = [];
+    let rankedAreas = [];
+    let selectedAreaId = null;
+    let isNightMode = false;
+
+    document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+    // Fallback block removed: No random scientific data allowed
+    function getColorForScore(score) {
+      if (score >= 80) return '#FF5A45';
+      if (score >= 60) return '#FF8A3D';
+      if (score >= 40) return '#62D9FF';
+      return '#32D583';
+    }
+
+    function getPriorityTag(score) {
+      if (score >= 80) return { label: 'CRITICAL', class: 'critical' };
+      if (score >= 60) return { label: 'HIGH', class: 'high' };
+      if (score >= 40) return { label: 'MODERATE', class: 'moderate' };
+      return { label: 'LOW', class: 'low' };
+    }
+
+    function getWetBulbClass(wb) {
+        if (wb >= 35) return 'wb-lethal';
+        if (wb >= 30) return 'wb-dangerous';
+        if (wb >= 25) return 'wb-caution';
+        return 'wb-safe';
+    }
+
+    function getAqiClass(aqi) {
+        if (aqi <= 50) return 'aqi-good';
+        if (aqi <= 100) return 'aqi-moderate';
+        if (aqi <= 150) return 'aqi-poor';
+        return 'aqi-unhealthy';
+    }
+
+    function calculatePriorityScore(area, weights, simulatedTreeCover = null) {
+      // Use pre-computed normalized scores from data.js (from scoring.py min-max normalization)
+      let currentHeat = isNightMode ? (area.night_heat_score !== undefined ? area.night_heat_score : area.heat_score * 0.75) : area.heat_score;
+      let heat_norm = currentHeat;
+      const pop_norm = area.pop_score;
+      let tree_norm = area.tree_score;
+      const pave_norm = area.pavement_score;
+
+      // When simulating tree interventions in Scenario Lab:
+      // Bounded empirical simulation based on canopy and pavement characteristics
+      if (simulatedTreeCover !== null) {
+        // Cap simulated tree cover at physically plausible limit (exactly 60%)
+        const maxPlausibleTreeCover = 60;
+        simulatedTreeCover = Math.min(simulatedTreeCover, maxPlausibleTreeCover);
+        const addedCanopy = Math.max(0, simulatedTreeCover - area.tree_cover_pct);
+        
+        // Find exact min/max inverted tree cover dynamically to perfectly match scoring.py's normalize_to_100
+        const minInverted = Math.min(...AREAS.map(a => 100 - a.tree_cover_pct));
+        const maxInverted = Math.max(...AREAS.map(a => 100 - a.tree_cover_pct));
+        
+        // Tree deficit score reduction on normalized scale
+        const simulatedInverted = 100 - simulatedTreeCover;
+        tree_norm = Math.max(0, Math.min(100, ((simulatedInverted - minInverted) / (maxInverted - minInverted)) * 100));
+
+        // Microclimate cooling response factor: highly paved, low-canopy urban cores experience higher cooling impact
+        const urbanVulnerabilityFactor = (area.pavement_pct / 100) * 1.2;
+        // Limit maximum temperature drop to avoid impossible scenarios
+        const heatScoreReduction = Math.min(30, (addedCanopy / 50) * 25 * urbanVulnerabilityFactor);
+        heat_norm = Math.max(0, currentHeat - heatScoreReduction);
+      }
+
+      if (simulatedTreeCover === null) {
+        area.norm_scores = { heat: heat_norm, pop: pop_norm, tree: tree_norm, pave: pave_norm };
+      }
+
+      const totalWeight = weights.heat + weights.population + weights.tree_cover + weights.pavement;
+      if (totalWeight === 0) return 0;
+
+      const score = ((heat_norm * weights.heat) + (pop_norm * weights.population) + (tree_norm * weights.tree_cover) + (pave_norm * weights.pavement)) / totalWeight;
+      return Math.round(score);
+    }
+
+    function rankAreas(areas, weights) {
+      return areas.map((area, index) => ({ ...area, originalIndex: index, priority_score: calculatePriorityScore(area, weights) }))
+                  .sort((a, b) => b.priority_score - a.priority_score);
+    }
+
+    function updateStats() {
+      if (rankedAreas.length === 0) return;
+      const top = rankedAreas[0];
+
+      // heat_index_c is sourced from the FortyGuard heatmap endpoint when --live
+      // succeeds for this neighborhood; otherwise falls back to Open-Meteo apparent
+      // temperature. See area.data_source for which one was actually used.
+      let sumC = 0, count = 0;
+      AREAS.forEach(a => {
+        const val = isNightMode
+          ? (a.night_temp_c !== undefined ? a.night_temp_c : a.heat_index_c * 0.8)
+          : (a.heat_index_c !== undefined ? a.heat_index_c : a.avg_temp_c);
+        if (val) { sumC += parseFloat(val); count++; }
+      });
+      const avgC = count ? (sumC / count).toFixed(1) : '--';
+      const top5Pop = rankedAreas.slice(0, 5).reduce((sum, a) => sum + a.population, 0);
+
+      document.getElementById('hero-area').innerHTML = `
+        <div class="glass-card hero-main">
+          <div class="gauge-container" style="background: conic-gradient(${getColorForScore(top.priority_score)} ${top.priority_score}%, transparent ${top.priority_score}%)">
+            <div class="gauge-value">${top.priority_score}</div>
+          </div>
+          <div class="hero-info">
+            <div class="title">Heat Risk Analysis</div>
+            <div class="name">${top.name}</div>
+            <div class="priority-tag ${getPriorityTag(top.priority_score).class}">${getPriorityTag(top.priority_score).label} RISK</div>
+          </div>
+        </div>
+        <div class="glass-card kpi-card heat">
+          <div class="kpi-label">City Avg Temp</div>
+          <div class="kpi-val">${avgC}°C</div>
+          <div class="kpi-sub"><i data-lucide="thermometer" style="width:14px;color:var(--heat-accent)"></i> ${isNightMode ? 'Night conditions' : 'High thermal stress'}</div>
+        </div>
+        <div class="glass-card kpi-card">
+          <div class="kpi-label">Pop. in Top 5 Areas</div>
+          <div class="kpi-val">${(top5Pop/1000).toFixed(1)}K</div>
+          <div class="kpi-sub"><i data-lucide="users" style="width:14px;color:var(--primary)"></i> Top 5 areas</div>
+        </div>
+        <div class="glass-card kpi-card">
+          <div class="kpi-label">Areas Scanned</div>
+          <div class="kpi-val">${AREAS.length}</div>
+          <div class="kpi-sub"><i data-lucide="scan" style="width:14px;color:var(--success)"></i> Latest API snapshot</div>
+        </div>
+      `;
+    }
+
+    function renderDetailCard(area) {
+      if (!area) return;
+      const tag = getPriorityTag(area.priority_score);
+      document.getElementById('detail-card').innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <div>
+            <div class="priority-tag ${tag.class}">${tag.label} RISK</div>
+            <h2 style="font-size:2rem; font-weight:300; margin-top:0.5rem; margin-bottom:0.2rem;">${area.name}</h2>
+            <div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em;">
+              Data Source: <span style="color:var(--text-secondary); font-weight:500;">${area.data_source === 'fortyguard_live' ? 'Live: FortyGuard' : (area.data_source === 'open-meteo' ? 'Live: Open-Meteo' : (area.data_source || 'Unknown'))}</span>
+            </div>
+          </div>
+          <div style="font-size:3rem; font-weight:300; color:${getColorForScore(area.priority_score)}; line-height:1;">
+            ${area.priority_score}<span style="font-size:1rem;color:var(--text-muted)">/100</span>
+          </div>
+        </div>
+        <div class="priority-grid">
+          <div class="p-factor"><div class="lbl">Heat Risk</div><div class="val">${Math.round(area.norm_scores?.heat || 0)}</div></div>
+          <div class="p-factor"><div class="lbl">Vulnerable</div><div class="val">${Math.round(area.norm_scores?.pop || 0)}</div></div>
+          <div class="p-factor"><div class="lbl">Trees</div><div class="val">${Math.round(area.norm_scores?.tree || 0)}</div></div>
+          <div class="p-factor"><div class="lbl">Pavement</div><div class="val">${Math.round(area.norm_scores?.pave || 0)}</div></div>
+        </div>
+        <div class="sensor-strip">
+          <div class="sensor">
+            <div class="sensor-status">LATEST</div>
+            <div class="s-val" style="color:var(--heat-accent)">${(() => { const t = isNightMode ? (area.night_temp_c || area.heat_index_c * 0.8) : area.heat_index_c; return t ? (t * 9/5 + 32).toFixed(1) : '--'; })()}°F</div>
+            <div class="s-lbl">Temp</div>
+          </div>
+          <div class="sensor">
+            <div class="sensor-status">LATEST</div>
+            <div class="s-val ${getWetBulbClass(area.wet_bulb_c)}">${area.wet_bulb_c || '--'}°</div>
+            <div class="s-lbl">Wet Bulb</div>
+          </div>
+          <div class="sensor">
+            <div class="sensor-status">LATEST</div>
+            <div class="s-val">${area.humidity_pct || '--'}%</div>
+            <div class="s-lbl">Humidity</div>
+          </div>
+          <div class="sensor">
+            <div class="sensor-status">LATEST</div>
+            <div class="s-val ${getAqiClass(area.aqi)}">${area.aqi || '--'}</div>
+            <div class="s-lbl">AQI</div>
+          </div>
+          <div class="sensor">
+            <div class="sensor-status">LATEST</div>
+            <div class="s-val">${area.solar_ghi || '--'}</div>
+            <div class="s-lbl">Solar GHI</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderRankingList() {
+      const list = document.getElementById('ranking-list');
+      list.innerHTML = '';
+      rankedAreas.forEach((area, i) => {
+        const el = document.createElement('div');
+        el.className = `ranking-item ${selectedAreaId === area.originalIndex ? 'selected' : ''}`;
+        el.innerHTML = `
+          <div style="font-size:1.25rem; font-weight:300; color:var(--text-secondary); width:20px;">${i + 1}</div>
+          <div style="flex:1;">
+            <div style="font-weight:500;">${area.name}</div>
+            <div style="font-size:0.75rem; color:var(--text-muted);">Pop: ${(area.population/1000).toFixed(1)}k</div>
+          </div>
+          <div style="font-size:1.25rem; font-weight:600; color:${getColorForScore(area.priority_score)}">${area.priority_score}</div>
+        `;
+        el.onclick = () => selectArea(area.originalIndex);
+        list.appendChild(el);
+      });
+    }
+
+    function renderSurfaceAnalysis(area) {
+      if (!area || area.buildings_pct === undefined) {
+        document.getElementById('surface-section').innerHTML = '<h3 class="section-title"><i data-lucide="satellite"></i> Surface Analysis</h3><div style="color:var(--text-muted);">Data not available</div>';
+        return;
+      }
+      const bars = [
+        { label: 'Buildings', val: area.buildings_pct, color: 'var(--primary)' },
+        { label: 'Roads', val: area.roads_pct, color: 'var(--secondary)' },
+        { label: 'Vegetation', val: area.vegetation_pct, color: 'var(--success)' },
+        { label: 'Bare Soil', val: area.bare_soil_pct, color: 'var(--heat-accent)' },
+        { label: 'Water', val: area.water_pct, color: 'var(--primary)' }
+      ];
+      let barsHtml = '';
+      bars.forEach(b => {
+        barsHtml += `<div class="surface-row"><div class="lbl">${b.label}</div><div class="track"><div class="fill" style="width:${b.val}%; background:${b.color};"></div></div><div class="val">${b.val}%</div></div>`;
+      });
+      const insightText = area.impervious_pct >= 70
+        ? 'Buildings and roads dominate the landscape, severely limiting natural cooling.'
+        : area.impervious_pct >= 50
+        ? 'Mixed land cover with moderate impervious surfaces and some green space.'
+        : 'Relatively green area with good natural cooling potential from vegetation.';
+      document.getElementById('surface-section').innerHTML = `
+        <h3 class="section-title"><i data-lucide="satellite"></i> Surface Analysis</h3>
+        <div style="font-size:0.875rem; color:var(--text-secondary); margin-bottom:1.5rem;">Land cover composition for ${area.name}</div>
+        ${barsHtml}
+        <div class="surface-insight">
+          <strong>${area.impervious_pct}% IMPERVIOUS SURFACE</strong>
+          ${insightText}
+        </div>
+      `;
+    }
+
+    function updateCommercialStats() {
+      const criticalAreas = rankedAreas.filter(a => a.priority_score >= 60);
+      document.getElementById('comm-lives').textContent = (criticalAreas.reduce((sum, a) => sum + a.population, 0) / 1000).toFixed(0) + 'K';
+      document.getElementById('comm-savings').textContent = '$' + (criticalAreas.length * 400000 / 1000000).toFixed(1) + 'M';
+      const top5Imp = rankedAreas.slice(0, 5).reduce((sum, a) => sum + (a.impervious_pct || 0), 0) / 5;
+      document.getElementById('comm-coverage').textContent = top5Imp ? Math.round(top5Imp) + '%' : '--';
+    }
+
+    function updateDiscoveryInsight() {
+      const top3 = rankedAreas.slice(0, 3);
+      const avgCityTree = AREAS.reduce((sum, a) => sum + a.tree_cover_pct, 0) / AREAS.length;
+      const top3Tree = top3.reduce((sum, a) => sum + a.tree_cover_pct, 0) / 3;
+      const diffTree = Math.round(avgCityTree - top3Tree);
+      document.getElementById('discovery-text').innerHTML = `Top priority areas have <strong style="color:var(--critical)">${diffTree}% less tree cover</strong> than the city average, exposing more than <strong style="color:var(--heat-accent)">${(top3.reduce((s,a)=>s+a.population, 0)).toLocaleString()} residents</strong> to elevated thermal stress.`;
+    }
+
+    function updateBudgetSimulator() {
+      const budget = parseInt(document.getElementById('budget-slider').value);
+      document.getElementById('budget-display').textContent = `$${budget.toLocaleString()}`;
+      const list = document.getElementById('budget-list');
+      list.innerHTML = '';
+      let remaining = budget;
+      rankedAreas.slice(0, 8).forEach(area => {
+        const cost = Math.round(area.priority_score / 100 * 200000);
+        const isFunded = remaining >= cost;
+        if (isFunded) remaining -= cost;
+        list.innerHTML += `
+          <div class="budget-row ${isFunded ? 'funded' : 'unfunded'}">
+            <div>${area.name}</div>
+            <div class="status">${isFunded ? '<i data-lucide="check-circle" style="width:14px;"></i> FUNDED' : 'UNFUNDED'}</div>
+          </div>`;
+      });
+      lucide.createIcons();
+    }
+
+    function initWhatIf() {
+      const select = document.getElementById('whatif-area');
+      AREAS.forEach((a, i) => { select.appendChild(new Option(a.name, i)); });
+      const updateWhatIf = () => {
+        const val = parseInt(document.getElementById('whatif-tree-slider').value);
+        document.getElementById('whatif-tree-val').textContent = '+' + val + ' pp';
+        const area = AREAS[parseInt(select.value)];
+        
+        const maxPlausibleTreeCover = 60;
+        const simulatedTreeCover = Math.min(area.tree_cover_pct + val, maxPlausibleTreeCover);
+        const addedCanopy = Math.max(0, simulatedTreeCover - area.tree_cover_pct);
+
+        const oScore = calculatePriorityScore(area, currentWeights);
+        const nScore = calculatePriorityScore(area, currentWeights, simulatedTreeCover);
+        const diff = oScore - nScore;
+        const diffSign = diff >= 0 ? '-' : '+';
+        
+        // Bounded empirical simulation (°F) based on ACTUAL added canopy and impervious baseline
+        const baseFactor = (area.pavement_pct / 100) * 0.08;
+        const tempDropC = addedCanopy * baseFactor;
+        const tempDropF = (tempDropC * 1.8).toFixed(1);
+        const tempDropLowF = (tempDropF * 0.75).toFixed(1);
+
+        document.getElementById('whatif-result').innerHTML = `
+          <div class="sim-block"><div class="lbl">Current Risk</div><div class="val">${oScore}</div></div>
+          <i data-lucide="arrow-right" class="sim-arrow"></i>
+          <div class="sim-block">
+            <div class="lbl">Simulated Risk</div>
+            <div class="val" style="color:var(--success)">${nScore}</div>
+            <div class="sim-diff">${diffSign}${Math.abs(diff)} PTS (${addedCanopy > 0 ? `~${tempDropLowF}–${tempDropF}°F cooling` : 'no change'})</div>
+          </div>
+        `;
+        lucide.createIcons();
+      };
+      select.addEventListener('change', updateWhatIf);
+      document.getElementById('whatif-tree-slider').addEventListener('input', updateWhatIf);
+      updateWhatIf();
+    }
+
+    // Map Init
+    function initMap() {
+      map = L.map('map', { zoomControl: false, attributionControl: false }).setView(CITY.center, CITY.zoom);
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { maxZoom: 19 }).addTo(map);
+      updateMapPolygons();
+    }
+
+    function updateMapPolygons() {
+      if (!map) return;
+      polygons.forEach(p => map.removeLayer(p));
+      polygons = [];
+      rankedAreas.forEach(area => {
+        const color = getColorForScore(area.priority_score);
+        const isSelected = selectedAreaId === area.originalIndex;
+        const poly = L.polygon(area.polygon, { color: isSelected ? '#fff' : color, weight: isSelected ? 3 : 1, fillColor: color, fillOpacity: isSelected ? 0.6 : 0.4 }).addTo(map);
+        poly.bindPopup(`<h3>${area.name}</h3><p>Risk: <strong style="color:${color}">${area.priority_score}/100</strong></p>`);
+        poly.on('click', () => selectArea(area.originalIndex));
+        polygons.push(poly);
+      });
+    }
+
+    function selectArea(index) {
+      selectedAreaId = index;
+      const area = rankedAreas.find(a => a.originalIndex === index);
+      if (area && map) map.flyTo([area.lat, area.lng], 13, { duration: 0.5 });
+      renderDetailCard(area);
+      renderSurfaceAnalysis(area);
+      renderRankingList();
+      updateMapPolygons();
+      lucide.createIcons();
+    }
+
+    function updateDashboard() {
+      rankedAreas = rankAreas(AREAS, currentWeights);
+      if (selectedAreaId === null && rankedAreas.length > 0) selectedAreaId = rankedAreas[0].originalIndex;
+      updateStats();
+      renderRankingList();
+      const selectedArea = rankedAreas.find(a => a.originalIndex === selectedAreaId);
+      renderDetailCard(selectedArea);
+      renderSurfaceAnalysis(selectedArea);
+      updateMapPolygons();
+      updateDiscoveryInsight();
+      updateBudgetSimulator();
+      updateCommercialStats();
+      lucide.createIcons();
+    }
+
+    // Slider listeners — auto-redistribute so total always = 100%
+    const metricKeys = ['heat', 'pop', 'tree', 'pave'];
+    const keyMap = { heat: 'heat', pop: 'population', tree: 'tree_cover', pave: 'pavement' };
+
+    metricKeys.forEach(metric => {
+      document.getElementById(`weight-${metric}`).addEventListener('input', (e) => {
+        const newVal = parseInt(e.target.value);
+        const others = metricKeys.filter(m => m !== metric);
+        const remaining = 100 - newVal;
+
+        // Current values of the other 3 sliders
+        const otherVals = others.map(m => parseInt(document.getElementById(`weight-${m}`).value));
+        const otherTotal = otherVals.reduce((a, b) => a + b, 0);
+
+        // Redistribute proportionally; last slider gets exact remainder to guarantee total = 100
+        let distributed = 0;
+        others.forEach((m, i) => {
+          let newOtherVal;
+          if (i === others.length - 1) {
+            // Last one gets whatever is left — guarantees sum = 100
+            newOtherVal = remaining - distributed;
+          } else {
+            newOtherVal = otherTotal === 0
+              ? Math.floor(remaining / others.length)
+              : Math.round((otherVals[i] / otherTotal) * remaining);
+          }
+          newOtherVal = Math.max(0, Math.min(100, newOtherVal));
+          distributed += newOtherVal;
+          document.getElementById(`weight-${m}`).value = newOtherVal;
+          document.getElementById(`weight-${m}-val`).textContent = `${newOtherVal}%`;
+          currentWeights[keyMap[m]] = newOtherVal;
+        });
+
+        // Set the moved slider itself
+        document.getElementById(`weight-${metric}-val`).textContent = `${newVal}%`;
+        currentWeights[keyMap[metric]] = newVal;
+
+        updateDashboard();
+      });
+    });
+    document.getElementById('reset-weights').addEventListener('click', () => {
+      currentWeights = { ...DEFAULT_WEIGHTS };
+      ['heat', 'pop', 'tree', 'pave'].forEach(m => {
+        const v = currentWeights[{'heat':'heat','pop':'population','tree':'tree_cover','pave':'pavement'}[m]];
+        document.getElementById(`weight-${m}`).value = v;
+        document.getElementById(`weight-${m}-val`).textContent = `${v}%`;
+      });
+      updateDashboard();
+    });
+    document.getElementById('budget-slider').addEventListener('input', updateBudgetSimulator);
+    document.getElementById('day-night-toggle').addEventListener('click', (e) => {
+      isNightMode = !isNightMode;
+      e.target.innerHTML = isNightMode ? '<i data-lucide="moon" style="width:14px;"></i> Night Baseline' : '<i data-lucide="sun" style="width:14px;"></i> Current Weather';
+      updateDashboard();
+    });
+
+    initMap();
+    initWhatIf();
+    updateDashboard();
+
+    // Navbar smooth scroll
+    const navMap = {
+      'Overview':        'hero-area',
+      'Heat Risk':       'section-heat-risk',
+      'Priority Areas':  'section-priority-areas',
+      'Scenarios':       'section-priority-areas',
+      'Insights':        'section-priority-areas'
+    };
+    document.querySelectorAll('.menu-item').forEach(item => {
+      item.addEventListener('click', () => {
+        document.querySelectorAll('.menu-item').forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        const targetId = navMap[item.textContent.trim()];
+        const el = document.getElementById(targetId);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+  </script>
+</body>
+</html>
