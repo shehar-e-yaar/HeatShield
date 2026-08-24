@@ -35,6 +35,7 @@ def export_to_js(df, output_path='site/data.js'):
             'pop_score': round(float(row.get('pop_score', 0)), 1),
             'tree_score': round(float(row.get('tree_score', 0)), 1),
             'pavement_score': round(float(row.get('pavement_score', 0)), 1),
+            'priority_score': round(float(row.get('priority_score', 0)), 1),
             'elderly_pct': int(row.get('elderly_pct', 0)),
             'children_pct': int(row.get('children_pct', 0)),
             'median_income': int(row.get('median_income', 0)),
@@ -68,7 +69,7 @@ def export_to_js(df, output_path='site/data.js'):
 
 const AREAS = {json.dumps(areas, indent=2)};
 
-const DEFAULT_WEIGHTS = {{ heat: 50, population: 25, tree_cover: 15, pavement: 10 }};
+const DEFAULT_WEIGHTS = {{ heat: 40, population: 35, tree_cover: 15, pavement: 10 }};
 
 const CITY = {{ name: 'Los Angeles, CA', center: [34.0522, -118.2437], zoom: 11 }};
 

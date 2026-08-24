@@ -28,8 +28,8 @@ NEIGHBORHOODS = {
 
 # Default scoring weights
 DEFAULT_WEIGHTS = {
-    'heat': 50,
-    'population': 25,
+    'heat': 40,
+    'population': 35,
     'tree_cover': 15,
     'pavement': 10
 }

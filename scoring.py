@@ -10,6 +10,18 @@ def normalize_to_100(series):
         return pd.Series([50] * len(series), index=series.index)
     return ((series - min_val) / (max_val - min_val) * 100).round(1)
 
+MAX_INCOME = 110000  # approximate ceiling for LA neighborhood median income
+
+def compute_vulnerability_raw(row):
+    """
+    Combines population size with income deprivation and age vulnerability.
+    Returns a raw (un-normalized) vulnerability score.
+    """
+    income_factor = 1.0 - (row['median_income'] / MAX_INCOME)
+    income_factor = max(0.0, min(1.0, income_factor))  # clamp 0-1
+    age_factor = (row['elderly_pct'] + row['children_pct']) / 100.0
+    return row['population'] * (1.0 + income_factor + age_factor)
+
 def calculate_scores(df, weights=None):
     """Calculate priority scores for all neighborhoods.
     
@@ -34,7 +46,12 @@ def calculate_scores(df, weights=None):
     elif 'heat_score' not in df.columns:
         df['heat_score'] = 50  # fallback
     
-    df['pop_score'] = normalize_to_100(df['population'])
+    df['vuln_raw'] = df.apply(compute_vulnerability_raw, axis=1)
+    min_v = df['vuln_raw'].min()
+    max_v = df['vuln_raw'].max()
+    df['vuln_score'] = ((df['vuln_raw'] - min_v) / (max_v - min_v) * 100).round(1)
+    df['pop_score'] = df['vuln_score']  # keep field name for backward compatibility
+    
     df['tree_score'] = normalize_to_100(100 - df['tree_cover_pct'])  # less trees = higher risk
     df['pavement_score'] = normalize_to_100(df['pavement_pct'])  # more pavement = higher risk
     

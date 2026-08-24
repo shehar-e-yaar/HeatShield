@@ -37,21 +37,21 @@
     <!-- Algorithm Weights -->
     <div class="glass-card weight-sliders-container">
       <div class="slider-group">
-        <label>Heat Exposure <span id="weight-heat-val">50%</span></label>
-        <input type="range" id="weight-heat" min="0" max="100" value="50">
+        <label>Heat Exposure <span id="weight-heat-val">40%</span></label>
+        <input type="range" id="weight-heat" min="0" max="100" value="40">
       </div>
       <div class="slider-group">
-        <label>Vulnerable Pop <span id="weight-pop-val">25%</span></label>
-        <input type="range" id="weight-pop" min="0" max="100" value="25">
+        <label>Vulnerability Index <span id="weight-pop-val">35%</span></label>
+        <input type="range" id="weight-pop" min="0" max="100" value="35">
       </div>
       <div class="slider-group">
         <label>Low Trees <span id="weight-tree-val">15%</span></label>
         <input type="range" id="weight-tree" min="0" max="100" value="15">
       </div>
-      <div class="slider-group">
-        <label>Impervious <span id="weight-pave-val">10%</span></label>
-        <input type="range" id="weight-pave" min="0" max="100" value="10">
-      </div>
+        <div class="slider-group">
+          <label>Pavement <span id="weight-pave-val">10%</span></label>
+          <input type="range" id="weight-pave" min="0" max="100" value="10">
+        </div>
     </div>
 
     <div class="hero-area" id="hero-area" data-section="overview">
@@ -69,30 +69,35 @@
       </aside>
     </div>
 
-    <div class="dashboard-bottom" id="section-priority-areas">
+        <div class="dashboard-bottom" id="section-priority-areas">
+
+      <!-- COLUMN 1 TOP: Surface Analysis -->
       <div class="glass-card" id="surface-section">
         <!-- Injected by JS -->
       </div>
-      
+
+      <!-- COLUMN 3 TOP: Key Insight -->
       <div class="glass-card">
-        <h3 class="section-title"><i data-lucide="circle-dollar-sign"></i> Cooling Investment</h3>
-        <div style="margin-bottom:1.5rem;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
-            <span style="font-size:0.75rem; color:var(--text-secondary); text-transform:uppercase;">Total Allocation</span>
-            <span id="budget-display" class="budget-amount" style="margin:0;">$500,000</span>
-          </div>
-          <input type="range" id="budget-slider" min="0" max="1000000" step="50000" value="500000" style="width:100%">
-        </div>
-        <div class="budget-list" id="budget-list"></div>
+        <h3 class="section-title"><i data-lucide="lightbulb"></i> Key Insight</h3>
+        <div id="discovery-text" style="font-size:1.1rem; font-weight:300; color:var(--text-primary); line-height:1.6; margin-bottom:1.5rem;"></div>
       </div>
-      
+
+      <!-- COLUMN 3 BOTTOM: Impact Summary -->
+      <div class="glass-card">
+        <h3 class="section-title"><i data-lucide="trending-up"></i> Impact Summary</h3>
+        <div class="impact-grid">
+          <div><div id="comm-lives" class="val">780K</div><div class="lbl">Residents in High/Critical Zones</div></div>
+          <div><div id="comm-savings" class="val" style="color:var(--success);">$3.2M</div><div class="lbl" title="Illustrative model value  not a financial forecast">Illustrative Impact Value</div></div>
+          <div><div id="comm-coverage" class="val" style="color:var(--secondary);">86%</div><div class="lbl">Impervious surface</div></div>
+        </div>
+      </div>
+      <!-- COLUMN 1 BOTTOM: Scenario Lab -->
       <div class="glass-card">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.25rem;">
           <h3 class="section-title" style="margin-bottom:0;"><i data-lucide="trees"></i> Scenario Lab</h3>
           <span style="font-size:0.6rem; letter-spacing:0.08em; text-transform:uppercase; background:rgba(77,163,255,0.12); color:var(--primary); padding:0.2rem 0.5rem; border-radius:6px; border:1px solid rgba(77,163,255,0.25);">Simulated Estimate</span>
         </div>
         <div style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:1.25rem; line-height:1.4;">Estimated cooling response based on canopy and pavement characteristics.</div>
-        
         <div class="whatif-controls">
           <div style="font-size:0.65rem; font-weight:500; margin-bottom:0.5rem; color:var(--text-secondary); text-transform:uppercase;">Target Neighborhood</div>
           <select id="whatif-area"></select>
@@ -105,24 +110,24 @@
         <div id="whatif-result"></div>
         <div style="font-size:0.68rem; color:var(--text-muted); margin-top:0.75rem; line-height:1.4;">*Estimated cooling is a bounded simulation based on canopy and urban-surface characteristics; it is not a CFD or site-specific temperature prediction.</div>
       </div>
-      
-      <div style="display:flex; flex-direction:column; gap:1.5rem;">
-        <div class="glass-card">
-          <h3 class="section-title"><i data-lucide="lightbulb"></i> Key Insight</h3>
-          <div id="discovery-text" style="font-size:1.1rem; font-weight:300; color:var(--text-primary); line-height:1.6; margin-bottom:1.5rem;"></div>
-        </div>
-        
-        <div class="glass-card">
-          <h3 class="section-title"><i data-lucide="trending-up"></i> Impact Summary</h3>
-          <div class="impact-grid">
-            <div><div id="comm-lives" class="val">780K</div><div class="lbl">Residents in High/Critical Zones</div></div>
-            <div><div id="comm-savings" class="val" style="color:var(--success);">$3.2M</div><div class="lbl" title="Illustrative model value — not a financial forecast">Illustrative Impact Value</div></div>
-            <div><div id="comm-coverage" class="val" style="color:var(--secondary);">86%</div><div class="lbl">Impervious surface</div></div>
+
+      <!-- COLUMN 2: Cooling Investment -->
+      <div class="glass-card">
+        <h3 class="section-title"><i data-lucide="circle-dollar-sign"></i> Cooling Investment</h3>
+        <div style="margin-bottom:1.5rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+            <span style="font-size:0.75rem; color:var(--text-secondary); text-transform:uppercase;">Total Allocation</span>
+            <span id="budget-display" class="budget-amount" style="margin:0;">$1,000,000</span>
           </div>
+          <input type="range" id="budget-slider" min="100000" max="5000000" step="100000" value="1000000" style="width:100%">
         </div>
+        <div class="budget-list" id="budget-list"></div>
       </div>
+
+      
     </div>
   </div>
+</div>
 
   <script>
         let currentWeights = { ...DEFAULT_WEIGHTS };
@@ -240,7 +245,7 @@
         </div>
         <div class="glass-card kpi-card heat">
           <div class="kpi-label">City Avg Temp</div>
-          <div class="kpi-val">${avgC}°C</div>
+          <div class="kpi-val">${avgC}&deg;C</div>
           <div class="kpi-sub"><i data-lucide="thermometer" style="width:14px;color:var(--heat-accent)"></i> ${isNightMode ? 'Night conditions' : 'High thermal stress'}</div>
         </div>
         <div class="glass-card kpi-card">
@@ -273,20 +278,20 @@
           </div>
         </div>
         <div class="priority-grid">
-          <div class="p-factor"><div class="lbl">Heat Risk</div><div class="val">${Math.round(area.norm_scores?.heat || 0)}</div></div>
-          <div class="p-factor"><div class="lbl">Vulnerable</div><div class="val">${Math.round(area.norm_scores?.pop || 0)}</div></div>
+            <div class="p-factor"><div class="lbl">Heat Risk</div><div class="val">${Math.round(area.norm_scores?.heat || 0)}</div></div>
+            <div class="p-factor"><div class="lbl">Vulnerability</div><div class="val">${Math.round(area.norm_scores?.pop || 0)}</div></div>
           <div class="p-factor"><div class="lbl">Trees</div><div class="val">${Math.round(area.norm_scores?.tree || 0)}</div></div>
           <div class="p-factor"><div class="lbl">Pavement</div><div class="val">${Math.round(area.norm_scores?.pave || 0)}</div></div>
         </div>
         <div class="sensor-strip">
           <div class="sensor">
             <div class="sensor-status">LATEST</div>
-            <div class="s-val" style="color:var(--heat-accent)">${(() => { const t = isNightMode ? (area.night_temp_c || area.heat_index_c * 0.8) : area.heat_index_c; return t ? (t * 9/5 + 32).toFixed(1) : '--'; })()}°F</div>
+            <div class="s-val" style="color:var(--heat-accent)">${(() => { const t = isNightMode ? (area.night_temp_c || area.heat_index_c * 0.8) : area.heat_index_c; return t ? (t * 9/5 + 32).toFixed(1) : '--'; })()}&deg;F</div>
             <div class="s-lbl">Temp</div>
           </div>
           <div class="sensor">
             <div class="sensor-status">LATEST</div>
-            <div class="s-val ${getWetBulbClass(area.wet_bulb_c)}">${area.wet_bulb_c || '--'}°</div>
+            <div class="s-val ${getWetBulbClass(area.wet_bulb_c)}">${area.wet_bulb_c || '--'}&deg;</div>
             <div class="s-lbl">Wet Bulb</div>
           </div>
           <div class="sensor">
@@ -428,24 +433,78 @@
       document.getElementById('discovery-text').innerHTML = `Top priority areas have <strong style="color:var(--critical)">${diffTree}% less tree cover</strong> than the city average, exposing more than <strong style="color:var(--heat-accent)">${(top3.reduce((s,a)=>s+a.population, 0)).toLocaleString()} residents</strong> to elevated thermal stress.`;
     }
 
-    function updateBudgetSimulator() {
-      const budget = parseInt(document.getElementById('budget-slider').value);
-      document.getElementById('budget-display').textContent = `$${budget.toLocaleString()}`;
-      const list = document.getElementById('budget-list');
-      list.innerHTML = '';
-      let remaining = budget;
-      rankedAreas.slice(0, 8).forEach(area => {
-        const cost = Math.round(area.priority_score / 100 * 200000);
-        const isFunded = remaining >= cost;
-        if (isFunded) remaining -= cost;
-        list.innerHTML += `
-          <div class="budget-row ${isFunded ? 'funded' : 'unfunded'}">
-            <div>${area.name}</div>
-            <div class="status">${isFunded ? '<i data-lucide="check-circle" style="width:14px;"></i> FUNDED' : 'UNFUNDED'}</div>
-          </div>`;
-      });
-      lucide.createIcons();
-    }
+// Budget model based on LA Bureau of Street Services data:
+// $1,000 per tree (planting + 3-year establishment maintenance)
+// One mature tree provides ~50 sqm of canopy coverage
+// Budget distributed proportionally by neighborhood priority score
+// Only neighborhoods below LA's 20% tree cover target receive funding
+function updateBudgetSimulator() {
+  const budget = parseInt(document.getElementById('budget-slider').value);
+  document.getElementById('budget-display').textContent = `$${budget.toLocaleString()}`;
+  const list = document.getElementById('budget-list');
+
+  // Constants based on LA real-world data
+  const COST_PER_TREE = 1000;        // $1,000 per tree (LA Bureau of Street Services)
+  const CANOPY_PER_TREE_SQM = 50;   // one mature tree = ~50 sqm canopy
+  const POP_DENSITY = 7000;          // LA average: 7,000 people per sqkm
+  const TARGET_TREE_PCT = 20;        // LA city green space target
+
+  // Only fund neighborhoods below the tree cover target
+  const eligible = rankedAreas.filter(a => a.tree_cover_pct < TARGET_TREE_PCT);
+
+  // Total priority score across eligible neighborhoods (for proportional share)
+  const totalPriority = eligible.reduce((sum, a) => sum + (a.priority_score || 0), 0);
+
+  let html = '';
+
+  if (eligible.length === 0 || totalPriority === 0) {
+    list.innerHTML = '<div style="font-size:0.8rem;color:var(--text-muted);">All neighborhoods meet the 20% tree cover target.</div>';
+    return;
+  }
+
+  eligible.forEach(area => {
+    const share = (area.priority_score || 0) / totalPriority;
+    const allocation = Math.round(budget * share);
+    const treesPlanted = Math.floor(allocation / COST_PER_TREE);
+
+    // Calculate canopy gain %
+    const areaSqm = (area.population / POP_DENSITY) * 1_000_000;
+    const canopyGainPct = areaSqm > 0
+      ? ((treesPlanted * CANOPY_PER_TREE_SQM) / areaSqm * 100).toFixed(2)
+      : '0.00';
+
+    const sharePercent = (share * 100).toFixed(0);
+
+    html += `
+      <div class="budget-row funded" style="margin-bottom:1rem; flex-direction:column; align-items:stretch; gap:0.25rem;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;">
+          <span style="font-size:0.85rem;font-weight:500;color:var(--text-primary);">${area.name}</span>
+          <span style="font-size:0.8rem;color:var(--primary);font-weight:500;">$${allocation.toLocaleString()}</span>
+        </div>
+        <div style="font-size:0.72rem;color:var(--text-secondary);display:flex;gap:1rem;flex-wrap:wrap;">
+          <span>${sharePercent}% of budget</span>
+          <span style="color:var(--success);"> ${treesPlanted.toLocaleString()} trees</span>
+          <span>+${canopyGainPct}% canopy</span>
+        </div>
+      </div>`;
+  });
+
+  // Note about ineligible neighborhoods
+  const ineligible = rankedAreas.filter(a => a.tree_cover_pct >= TARGET_TREE_PCT);
+  if (ineligible.length > 0) {
+    html += `<div style="font-size:0.7rem;color:var(--text-muted);margin-top:0.5rem;border-top:1px solid var(--border);padding-top:0.75rem;">
+      ${ineligible.map(a => a.name).join(', ')} already meet the 20% target - no intervention needed.
+    </div>`;
+  }
+
+  // Footer: cost basis
+  html += `<div style="font-size:0.65rem;color:var(--text-muted);margin-top:0.75rem;">
+    *Based on $1,000/tree (LA Bureau of Street Services planting + 3yr maintenance).
+    Budget allocated proportionally by neighborhood risk score.
+  </div>`;
+
+  list.innerHTML = html;
+}
 
     function initWhatIf() {
       const select = document.getElementById('whatif-area');
@@ -464,7 +523,7 @@
         const diff = oScore - nScore;
         const diffSign = diff >= 0 ? '-' : '+';
         
-        // Bounded empirical simulation (°F) based on ACTUAL added canopy and impervious baseline
+        // Bounded empirical simulation (&deg;F) based on ACTUAL added canopy and impervious baseline
         const baseFactor = (area.pavement_pct / 100) * 0.08;
         const tempDropC = addedCanopy * baseFactor;
         const tempDropF = (tempDropC * 1.8).toFixed(1);
@@ -476,7 +535,7 @@
           <div class="sim-block">
             <div class="lbl">Simulated Risk</div>
             <div class="val" style="color:var(--success)">${nScore}</div>
-            <div class="sim-diff">${diffSign}${Math.abs(diff)} PTS (${addedCanopy > 0 ? `~${tempDropLowF}–${tempDropF}°F cooling` : 'no change'})</div>
+            <div class="sim-diff">${diffSign}${Math.abs(diff)} PTS (${addedCanopy > 0 ? `~${tempDropLowF}&deg;F-${tempDropF}&deg;F cooling` : 'no change'})</div>
           </div>
         `;
         lucide.createIcons();
@@ -488,7 +547,7 @@
 
     // Map Init
     function initMap() {
-      map = L.map('map', { zoomControl: false, attributionControl: false }).setView(CITY.center, CITY.zoom);
+      map = L.map('map', { zoomControl: false, attributionControl: false, scrollWheelZoom: false }).setView(CITY.center, CITY.zoom);
       L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { maxZoom: 19 }).addTo(map);
       updateMapPolygons();
     }
@@ -533,7 +592,7 @@
       lucide.createIcons();
     }
 
-    // Slider listeners — auto-redistribute so total always = 100%
+    // Slider listeners - auto-redistribute so total always = 100%
     const metricKeys = ['heat', 'pop', 'tree', 'pave'];
     const keyMap = { heat: 'heat', pop: 'population', tree: 'tree_cover', pave: 'pavement' };
 
@@ -552,7 +611,7 @@
         others.forEach((m, i) => {
           let newOtherVal;
           if (i === others.length - 1) {
-            // Last one gets whatever is left — guarantees sum = 100
+            // Last one gets whatever is left - guarantees sum = 100
             newOtherVal = remaining - distributed;
           } else {
             newOtherVal = otherTotal === 0
