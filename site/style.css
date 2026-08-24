@@ -5,19 +5,19 @@
 /* PHASE 1: DESIGN TOKENS                    */
 /* ========================================= */
 :root {
-  --bg-base: #07111F;
-  --bg-sec: #0B1830;
-  --primary: #4DA3FF;
-  --secondary: #62D9FF;
+  --bg-base: #06101E;
+  --bg-sec: #0D1F3C;
+  --primary: #60AEFF;
+  --secondary: #7EDEFF;
   --heat-accent: #FF8A3D;
   --critical: #FF5A45;
   --success: #32D583;
   --text-primary: #F5F8FC;
   --text-secondary: #A9B8CC;
   --text-muted: #718198;
-  --border: rgba(255,255,255,0.12);
-  --glass-bg: rgba(255,255,255,0.06);
-  --glass-bg-hover: rgba(255,255,255,0.10);
+  --border: rgba(100, 180, 255, 0.15);
+  --glass-bg: rgba(30, 70, 140, 0.18);
+  --glass-bg-hover: rgba(40, 90, 170, 0.26);
   --glass-blur: blur(25px);
   --glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
 }
@@ -38,9 +38,19 @@ body {
 
 /* Atmospheric Glows */
 body::before {
-  content: ''; position: fixed; top: -20%; left: -10%; width: 60vw; height: 60vw;
-  background: radial-gradient(circle, rgba(77, 163, 255, 0.08) 0%, transparent 60%);
-  filter: blur(120px); z-index: -1; pointer-events: none;
+  content: '';
+  position: fixed;
+  top: -20%;
+  left: -10%;
+  width: 70%;
+  height: 70%;
+  background: radial-gradient(ellipse, rgba(30, 100, 220, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+  animation: bgDrift 12s ease-in-out infinite alternate;
+}
+@keyframes bgDrift {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(5%, 8%) scale(1.08); }
 }
 body::after {
   content: ''; position: fixed; bottom: -20%; right: -10%; width: 50vw; height: 50vw;
@@ -64,12 +74,12 @@ body::after {
   justify-content: center;
   align-items: center;
   padding: 0.6rem 2rem;
-  background: rgba(255,255,255,0.05);
+  background: rgba(20, 60, 130, 0.45);
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(100, 180, 255, 0.2);
   border-radius: 100px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 32px rgba(20, 60, 200, 0.15);
 }
 
 .nav-brand {
@@ -117,8 +127,19 @@ body::after {
 .glass-card {
   background: var(--glass-bg); backdrop-filter: var(--glass-blur); border: 1px solid var(--border);
   border-radius: 24px; padding: 1.5rem; box-shadow: var(--glass-shadow); transition: all 0.4s ease;
+  animation: fadeUp 0.5s ease both;
 }
-.glass-card:hover { transform: translateY(-2px); background: var(--glass-bg-hover); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.glass-card:hover {
+  transform: translateY(-2px);
+  background: var(--glass-bg-hover);
+  border-color: rgba(96, 174, 255, 0.28);
+  box-shadow: 0 8px 40px rgba(60, 130, 255, 0.12), 0 2px 12px rgba(0,0,0,0.3);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
 
 /* Sliders */
 .weight-sliders-container { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem; }
@@ -177,7 +198,12 @@ input[type=range]:active::-webkit-slider-thumb { transform: scale(1.3); box-shad
 .kpi-card { display: flex; flex-direction: column; justify-content: center; }
 .kpi-card.heat { box-shadow: 0 0 20px rgba(255, 138, 61, 0.1); border-color: rgba(255, 138, 61, 0.2); }
 .kpi-label { font-size: 0.65rem; letter-spacing: 0.1em; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 0.5rem; }
-.kpi-val { font-size: 2rem; font-weight: 300; color: var(--text-primary); }
+@keyframes shimmer {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.75; }
+  100% { opacity: 1; }
+}
+.kpi-val { font-size: 2rem; font-weight: 300; color: var(--text-primary); animation: shimmer 3s ease-in-out infinite; }
 .kpi-sub { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem; display: flex; align-items: center; gap: 4px;}
 
 /* Dash Top */
@@ -229,6 +255,15 @@ input[type=range]:active::-webkit-slider-thumb { transform: scale(1.3); box-shad
 
 /* Dash Bottom */
 .dashboard-bottom { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+.dashboard-bottom > .glass-card,
+.dashboard-bottom > #surface-section {
+  align-self: start;
+}
+/* Stagger the cards */
+.dashboard-bottom > *:nth-child(1) { animation-delay: 0.05s; }
+.dashboard-bottom > *:nth-child(2) { animation-delay: 0.12s; }
+.dashboard-bottom > *:nth-child(3) { animation-delay: 0.19s; }
+.dashboard-bottom > *:nth-child(4) { animation-delay: 0.26s; }
 h3.section-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-secondary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
 .section-title svg { width: 14px; height: 14px; stroke: var(--primary); }
 
@@ -250,10 +285,41 @@ h3.section-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing
 
 /* What-If */
 .whatif-controls select { width: 100%; background: rgba(0,0,0,0.4); color: var(--text-primary); border: 1px solid var(--border); padding: 0.75rem; border-radius: 12px; margin-bottom: 1.5rem; outline: none; appearance: none; }
-.whatif-result { margin-top: 2rem; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 16px; border: 1px solid var(--border); }
+.whatif-result {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: rgba(13, 30, 60, 0.6);
+  padding: 2rem 1.5rem 1.75rem;
+  border-radius: 16px;
+  border: 1px solid rgba(77, 163, 255, 0.2);
+  gap: 1rem;
+}
 .sim-block { text-align: center; }
-.sim-block .lbl { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
-.sim-block .val { font-size: 2rem; font-weight: 300; margin-top: 0.25rem; }
+.sim-block .lbl {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.4rem;
+  padding-top: 0.25rem;
+}
+.sim-block .val {
+  font-size: 2.5rem;
+  font-weight: 200;
+  margin-top: 0.1rem;
+  letter-spacing: -0.02em;
+}
+.sim-arrow {
+  color: var(--primary);
+  opacity: 0.7;
+  animation: pulse-arrow 1.8s ease-in-out infinite;
+}
+@keyframes pulse-arrow {
+  0%, 100% { transform: translateX(0); opacity: 0.5; }
+  50% { transform: translateX(4px); opacity: 1; }
+}
 .sim-diff { color: var(--success); font-weight: 500; font-size: 0.85rem; margin-top: 0.5rem; }
 .whatif-change.positive { color: var(--success); }
 .whatif-change.negative { color: var(--critical); }

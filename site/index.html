@@ -328,36 +328,89 @@
     }
 
     function renderSurfaceAnalysis(area) {
-      if (!area || area.buildings_pct === undefined) {
-        document.getElementById('surface-section').innerHTML = '<h3 class="section-title"><i data-lucide="satellite"></i> Surface Analysis</h3><div style="color:var(--text-muted);">Data not available</div>';
-        return;
-      }
-      const bars = [
-        { label: 'Buildings', val: area.buildings_pct, color: 'var(--primary)' },
-        { label: 'Roads', val: area.roads_pct, color: 'var(--secondary)' },
-        { label: 'Vegetation', val: area.vegetation_pct, color: 'var(--success)' },
-        { label: 'Bare Soil', val: area.bare_soil_pct, color: 'var(--heat-accent)' },
-        { label: 'Water', val: area.water_pct, color: 'var(--primary)' }
-      ];
-      let barsHtml = '';
-      bars.forEach(b => {
-        barsHtml += `<div class="surface-row"><div class="lbl">${b.label}</div><div class="track"><div class="fill" style="width:${b.val}%; background:${b.color};"></div></div><div class="val">${b.val}%</div></div>`;
-      });
-      const insightText = area.impervious_pct >= 70
-        ? 'Buildings and roads dominate the landscape, severely limiting natural cooling.'
-        : area.impervious_pct >= 50
-        ? 'Mixed land cover with moderate impervious surfaces and some green space.'
-        : 'Relatively green area with good natural cooling potential from vegetation.';
-      document.getElementById('surface-section').innerHTML = `
-        <h3 class="section-title"><i data-lucide="satellite"></i> Surface Analysis</h3>
-        <div style="font-size:0.875rem; color:var(--text-secondary); margin-bottom:1.5rem;">Land cover composition for ${area.name}</div>
-        ${barsHtml}
-        <div class="surface-insight">
-          <strong>${area.impervious_pct}% IMPERVIOUS SURFACE</strong>
-          ${insightText}
-        </div>
-      `;
-    }
+  const section = document.getElementById('surface-section');
+  if (!area || area.buildings_pct === undefined) {
+    section.innerHTML = '<h3 class="section-title"><i data-lucide="satellite"></i> Surface Analysis</h3><div style="color:var(--text-muted);">Data not available</div>';
+    return;
+  }
+
+  const slices = [
+    { label: 'Buildings',  val: area.buildings_pct,  color: '#4DA3FF' },
+    { label: 'Roads',      val: area.roads_pct,       color: '#62D9FF' },
+    { label: 'Vegetation', val: area.vegetation_pct,  color: '#32D583' },
+    { label: 'Bare Soil',  val: area.bare_soil_pct,   color: '#FF8A3D' },
+    { label: 'Water',      val: area.water_pct,       color: '#A78BFA' }
+  ].filter(s => s.val > 0);
+
+  // Build SVG donut chart
+  const cx = 90, cy = 90, r = 70, stroke = 28;
+  const circ = 2 * Math.PI * r;
+  let offset = 0;
+  const gap = 1.5; // small gap between slices in degrees
+
+  let paths = '';
+  let totalUsed = 0;
+  slices.forEach((s, i) => {
+    const pct = s.val / 100;
+    const dashLen = circ * pct - (gap * Math.PI * r / 180);
+    paths += `<circle
+      cx="${cx}" cy="${cy}" r="${r}"
+      fill="none"
+      stroke="${s.color}"
+      stroke-width="${stroke}"
+      stroke-dasharray="${Math.max(0, dashLen)} ${circ}"
+      stroke-dashoffset="${-offset}"
+      style="transition: stroke-dasharray 0.8s cubic-bezier(.4,0,.2,1) ${i * 0.08}s;"
+    />`;
+    offset += circ * pct;
+  });
+
+  // Legend
+  let legendHtml = '';
+  slices.forEach(s => {
+    legendHtml += `
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+        <div style="width:10px;height:10px;border-radius:50%;background:${s.color};flex-shrink:0;"></div>
+        <span style="font-size:0.75rem;color:var(--text-secondary);flex:1;">${s.label}</span>
+        <span style="font-size:0.75rem;font-weight:500;color:var(--text-primary);">${s.val}%</span>
+      </div>`;
+  });
+
+  const insightText = area.impervious_pct >= 70
+    ? 'Buildings and roads dominate the landscape, severely limiting natural cooling.'
+    : area.impervious_pct >= 50
+    ? 'Mixed land cover with moderate impervious surfaces and some green space.'
+    : 'Relatively green area with good natural cooling potential from vegetation.';
+
+  section.innerHTML = `
+    <h3 class="section-title"><i data-lucide="satellite"></i> Surface Analysis</h3>
+    <div style="font-size:0.8rem;color:var(--text-secondary);margin-bottom:1.25rem;">
+      Land cover composition for ${area.name}
+    </div>
+    <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
+      <svg width="180" height="180" viewBox="0 0 180 180" style="flex-shrink:0;transform:rotate(-90deg);">
+        ${paths}
+        <text x="90" y="86" text-anchor="middle" dominant-baseline="central"
+          style="font-size:1.5rem;font-weight:300;fill:#F5F8FC;transform:rotate(90deg);transform-origin:90px 90px;">
+          ${area.impervious_pct}%
+        </text>
+        <text x="90" y="104" text-anchor="middle" dominant-baseline="central"
+          style="font-size:0.5rem;fill:#718198;transform:rotate(90deg);transform-origin:90px 90px;text-transform:uppercase;letter-spacing:0.1em;">
+          impervious
+        </text>
+      </svg>
+      <div style="flex:1;min-width:120px;">
+        ${legendHtml}
+      </div>
+    </div>
+    <div class="surface-insight" style="margin-top:1rem;">
+      <strong>${area.impervious_pct}% IMPERVIOUS SURFACE</strong>
+      ${insightText}
+    </div>
+  `;
+
+  if (window.lucide) lucide.createIcons();
+}
 
     function updateCommercialStats() {
       const criticalAreas = rankedAreas.filter(a => a.priority_score >= 60);
