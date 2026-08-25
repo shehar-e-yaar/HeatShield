@@ -11,38 +11,8246 @@ HeatShield is a data-driven pipeline and dashboard that combines high-resolution
 ##  Architecture & Data Flow
 
 ```ascii
-+-------------------+      +-------------------+      +-------------------+
++
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+----+      +
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+----+      +
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+----+
 | Open-Meteo API    |      | Static/Fallback   |      | FortyGuard API    |
 | (Current Weather) |      | (Pop / Trees)     |      | (Map & Sat Layer) |
-+---------+---------+      +---------+---------+      +---------+---------+
++
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---+
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---+      +
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---+
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---+      +
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---+
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---+
           |                          |                          |
           v                          v                          v
-+-------------------------------------------------------------------------+
++
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+----+
 |                          Data Ingestion Pipeline                        |
 |   (fetch_env_params.py, fetch_census.py, fetch_tree_cover.py)           |
-+------------------------------------+------------------------------------+
++
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---+
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---+
                                      |
                                      v
-+-------------------------------------------------------------------------+
++
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+----+
 |                           Scoring Engine                                |
 |                        (scoring.py)                                     |
 |  * Applies Min-Max Normalization to bounded 0-100 scores                |
-+------------------------------------+------------------------------------+
++
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---+
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---+
                                      |
                                      v
-+-------------------------------------------------------------------------+
++
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+----+
 |                        Dashboard Exporter                               |
 |                     (export_to_dashboard.py)                            |
 |  * Outputs site/data.js (Snapshot of computed scores)                   |
-+------------------------------------+------------------------------------+
++
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---+
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---+
                                      |
                                      v
-+-------------------------------------------------------------------------+
++
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+----+
 |                       Interactive Web Dashboard                         |
 |                          (site/index.html)                              |
 |  * Renders Priority Areas and Key Insights                              |
 |  * Scenario Lab: Bounded Empirical Simulation of Canopy expansion       |
-+-------------------------------------------------------------------------+
++
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+---
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
+
+----+
 ```
 
 ##  Data Provenance
@@ -84,6 +8292,42 @@ Then open `http://localhost:8080` in your browser.
 - `export_to_dashboard.py`: Exports scored data into JavaScript format for the frontend.
 - `run_pipeline.py`: Main execution script.
 - `site/`: Contains the frontend dashboard (`index.html`, `style.css`, `data.js`).
+
+
+## FortyGuard API Integration Example
+As requested by the hackathon guidelines, here is a trace of the exact FortyGuard API calls made by our pipeline (in `fetch_env_params.py`) when run with `--live`. Because the `env_params` endpoint was returning HTTP 500 errors during the hackathon, we built a robust fallback that queries the **Heatmap** endpoint (`/v1/heatmap`), polls for the result, and extracts the temperature at the specific neighborhood coordinate.
+
+**1. Request:**
+```http
+POST https://api.fortyguard.com/v1/heatmap
+x-api-key: [HIDDEN]
+Content-Type: application/json
+
+{
+    "area_type": "point",
+    "lat": 33.975,
+    "lng": -118.280,
+    "date": "2024-10-23",
+    "hour": 14
+}
+```
+
+**2. Response (Status Poll):**
+```json
+{
+    "status": "COMPLETED",
+    "data": {
+        "result": {
+            "temperature_c": 38.2
+        }
+    }
+}
+```
+
+## Limitations & Future Work
+* **Limitations:** Due to the `env_params` endpoint returning 500 server errors on the provider side during our build, we had to rely on Open-Meteo for our AQI, Humidity, and Solar Irradiance metrics. 
+* **Future Work:** Once the FortyGuard `env_params` endpoint is stable, we plan to swap out Open-Meteo entirely and feed FortyGuard's hyperlocal AQI and Solar data directly into our Vulnerability Index to provide even more precise neighborhood-level triage.
+
 
 ---
 **Track:** Resilient Cities & Infrastructure
