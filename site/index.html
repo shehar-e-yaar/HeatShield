@@ -269,9 +269,6 @@
           <div>
             <div class="priority-tag ${tag.class}">${tag.label} RISK</div>
             <h2 style="font-size:2rem; font-weight:300; margin-top:0.5rem; margin-bottom:0.2rem;">${area.name}</h2>
-            <div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em;">
-              Data Source: <span style="color:var(--text-secondary); font-weight:500;">${area.data_source === 'fortyguard_live' ? 'Live: FortyGuard' : (area.data_source === 'open-meteo' ? 'Live: Open-Meteo' : (area.data_source || 'Unknown'))}</span>
-            </div>
           </div>
           <div style="font-size:3rem; font-weight:300; color:${getColorForScore(area.priority_score)}; line-height:1;">
             ${area.priority_score}<span style="font-size:1rem;color:var(--text-muted)">/100</span>
