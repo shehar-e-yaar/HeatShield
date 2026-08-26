@@ -279,11 +279,6 @@
         </div>
         <div class="priority-grid">
             <div class="p-factor"><div class="lbl">Heat Risk</div><div class="val">${Math.round(area.norm_scores?.heat || 0)}</div></div>
-        <div style="font-size:0.75rem; color:var(--text-secondary); margin-top:0.75rem; margin-bottom:1rem; display:flex; gap:1rem; border-top:1px solid rgba(255,255,255,0.05); padding-top:0.75rem; justify-content: space-between;">
-          <div style="display:flex; align-items:center; gap:6px;" title="Total Population"><i data-lucide="users" style="width:14px;height:14px;color:var(--primary);"></i><span style="color:var(--text-primary);">${(area.population/1000).toFixed(0)}K</span></div>
-          <div style="display:flex; align-items:center; gap:6px;" title="Children (%)"><i data-lucide="baby" style="width:14px;height:14px;color:var(--heat-accent);"></i><span style="color:var(--text-primary);">${area.children_pct}%</span></div>
-          <div style="display:flex; align-items:center; gap:6px;" title="Median Income"><i data-lucide="wallet" style="width:14px;height:14px;color:var(--success);"></i><span style="color:var(--text-primary);">$${(area.median_income/1000).toFixed(0)}K</span></div>
-        </div>
             <div class="p-factor"><div class="lbl">Vulnerability</div><div class="val">${Math.round(area.norm_scores?.pop || 0)}</div></div>
           <div class="p-factor"><div class="lbl">Trees</div><div class="val">${Math.round(area.norm_scores?.tree || 0)}</div></div>
           <div class="p-factor"><div class="lbl">Pavement</div><div class="val">${Math.round(area.norm_scores?.pave || 0)}</div></div>
