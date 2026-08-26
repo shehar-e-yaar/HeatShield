@@ -275,10 +275,10 @@
           </div>
         </div>
         <div class="priority-grid">
-            <div class="p-factor"><div class="lbl">Heat Risk</div><div class="val">${Math.round(area.norm_scores?.heat || 0)}</div></div>
-            <div class="p-factor"><div class="lbl">Vulnerability</div><div class="val">${Math.round(area.norm_scores?.pop || 0)}</div></div>
-          <div class="p-factor"><div class="lbl">Trees</div><div class="val">${Math.round(area.norm_scores?.tree || 0)}</div></div>
-          <div class="p-factor"><div class="lbl">Pavement</div><div class="val">${Math.round(area.norm_scores?.pave || 0)}</div></div>
+            <div class="p-factor"><div class="lbl">Heat Risk</div><div class="val">${Math.round(area.heat_score || 0)}</div></div>
+            <div class="p-factor"><div class="lbl">Vulnerability</div><div class="val">${Math.round(area.pop_score || 0)}</div></div>
+          <div class="p-factor"><div class="lbl">Trees</div><div class="val">${Math.round(area.tree_score || 0)}</div></div>
+          <div class="p-factor"><div class="lbl">Pavement</div><div class="val">${Math.round(area.pavement_score || 0)}</div></div>
         </div>
         <div class="sensor-strip">
           <div class="sensor">
